@@ -10,17 +10,24 @@ router.get('/', async (req,res)=> {
         res.json({message:err});
     }
 });
-router.post('/',(req,res)=>{
+router.post('/', async (req,res)=>{
     const post = new Post({
         username: req.body.username,
         password: req.body.password,
-    }) 
-    post.save()
-    .then(data => {
-        res.json(data);
     })
-    .catch(err => {
-        res.json({message: err})
-    });
+    const username1= req.body.username
+    const Check = await Post.findOne({'username': username1})
+    console.log(Check);
+    if (Check){
+        res.json('There is already a user with the same Username!');
+    }else{
+        post.save()
+        .then(data => {
+            res.json(data);
+        })
+        .catch(err => {
+            res.json({message: err})
+        });
+    }
 });
 module.exports = router;
