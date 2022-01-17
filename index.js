@@ -5,7 +5,7 @@ const app = express();
 //const mongodb = require('mongodb');
 const mongoose = require('mongoose');
 const registerRoute = require('./routes/register.js');
-
+const loginRoute = require('./routes/login.js');
 //To Covnert JSON to JS
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -16,7 +16,7 @@ app.get('/', (req,res)=> {
 });
 //Importing Routes
 app.use('/register', registerRoute);
-
+app.use('/login',loginRoute);
 //For dotenv, to secure database 
 require('dotenv/config');
 
