@@ -9,9 +9,9 @@ router.post('/', async (req,res)=>{
     console.clear();
     console.log(Check);
     if (Check){
-        res.json('Successful Login!');
+        res.json('Succeeded');
     }else{
-        res.json('Wrong Username or Wrong Password!');
+        res.json('Failed');
         }
 });
 module.exports = router;
