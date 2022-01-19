@@ -4,8 +4,13 @@ const express = require('express');
 const app = express();
 //const mongodb = require('mongodb');
 const mongoose = require('mongoose');
+//starting mysql 
+var mysql = require('mysql');
+//Routes
 const registerRoute = require('./routes/register.js');
 const loginRoute = require('./routes/login.js');
+const childlistRoute = require('./routes/childlist.js');
+
 //To Covnert JSON to JS
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -17,10 +22,10 @@ app.get('/', (req,res)=> {
 //Importing Routes
 app.use('/register', registerRoute);
 app.use('/login',loginRoute);
+app.use('/childlist', childlistRoute);
 //For dotenv, to secure database 
 require('dotenv/config');
-
-//To Connect to the Database
+//To connect to the MONGODB Database
 console.log(process.env.DB_CONNECTION)
 mongoose.connect(process.env.DB_CONNECTION, { 
         useNewUrlParser: true,
@@ -28,8 +33,9 @@ mongoose.connect(process.env.DB_CONNECTION, {
         (err) => {
                 if  (err) console.log(err)
            });
-
 //Set listening port to port 3000
 const port = process.env.PORT || 3000
 app.listen(port);
+
+
 
