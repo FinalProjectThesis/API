@@ -5,8 +5,9 @@ var connection = require('../config.js');
 require('dotenv/config');
 
 router.post('/', async (req,res)=>{
-    let sql = "SELECT * FROM users"
-    connection.query(sql, function (err, result, fields) {
+    var parent_username = req.body.parent_username;
+    let sql = `SELECT * FROM Student WHERE parent_username=?`
+    connection.query(sql,parent_username,function (err, result, fields) {
         if (err) {
             console.log(err);
             res.json(err);

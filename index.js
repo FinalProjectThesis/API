@@ -10,6 +10,7 @@ var mysql = require('mysql');
 const registerRoute = require('./routes/register.js');
 const loginRoute = require('./routes/login.js');
 const childlistRoute = require('./routes/childlist.js');
+const childaddRoute = require('./routes/childadd.js');
 
 //To Covnert JSON to JS
 app.use(express.urlencoded({ extended: true }));
@@ -23,6 +24,8 @@ app.get('/', (req,res)=> {
 app.use('/register', registerRoute);
 app.use('/login',loginRoute);
 app.use('/childlist', childlistRoute);
+app.use('/childadd', childaddRoute);
+
 //For dotenv, to secure database 
 require('dotenv/config');
 //To connect to the MONGODB Database
