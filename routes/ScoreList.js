@@ -7,7 +7,7 @@ require('dotenv/config');
 router.post('/', async (req,res)=>{
     var operation = req.body.operation;
     var student_id= req.body.student_id;
-    let sql = `SELECT * FROM Scores WHERE student_id='${student_id}' AND operation='${operation}'`
+    let sql = `SELECT * FROM Scores WHERE student_id='${student_id}' AND operation='${operation}' ORDER BY date DESC,time DESC`
     connection.query(sql,function (err, result, fields) {
         if (err) {
             console.log(err);
