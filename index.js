@@ -12,6 +12,7 @@ const loginRoute = require('./routes/login.js');
 const childlistRoute = require('./routes/childlist.js');
 const childaddRoute = require('./routes/childadd.js');
 const ScoreListRoute = require('./routes/ScoreList');
+const ScoreListDetailsRoute = require('./routes/scorelistdetails');
 
 //To Covnert JSON to JS
 app.use(express.urlencoded({ extended: true }));
@@ -27,6 +28,7 @@ app.use('/login',loginRoute);
 app.use('/childlist', childlistRoute);
 app.use('/childadd', childaddRoute);
 app.use('/scorelist', ScoreListRoute);
+app.use('/scorelistdetails', ScoreListDetailsRoute);
 
 //For dotenv, to secure database 
 require('dotenv/config');
