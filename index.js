@@ -13,7 +13,7 @@ const childlistRoute = require('./routes/childlist.js');
 const childaddRoute = require('./routes/childadd.js');
 const ScoreListRoute = require('./routes/ScoreList');
 const ScoreListDetailsRoute = require('./routes/scorelistdetails');
-
+const userdetailsRoute = require('./routes/userdetails')
 //To Covnert JSON to JS
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -29,6 +29,7 @@ app.use('/childlist', childlistRoute);
 app.use('/childadd', childaddRoute);
 app.use('/scorelist', ScoreListRoute);
 app.use('/scorelistdetails', ScoreListDetailsRoute);
+app.use('/userdetails', userdetailsRoute);
 
 //For dotenv, to secure database 
 require('dotenv/config');
