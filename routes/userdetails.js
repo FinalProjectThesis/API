@@ -4,8 +4,7 @@ const Post = require('../Schemas/GuardianCredentialsSchema');
 
 router.post('/', async (req,res)=>{
     const username= req.body.username
-    const password= req.body.password
-    const Check = await Post.findOne({'username': username, 'password': password})
+    const Check = await Post.findOne({'username': username})
     console.clear();
     console.log(Check);
     if (Check){
