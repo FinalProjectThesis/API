@@ -11,6 +11,6 @@ router.post('/', async (req,res)=>{
         res.json(Check);
     }else{
         res.json('Failed');
-        }
+    }
 });
 module.exports = router;
