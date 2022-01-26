@@ -26,7 +26,7 @@ router.delete('/:id', async (req, res)=>{
     var id = req.params.id;
     var student_id = id;
     let sql=`DELETE FROM Student  WHERE id=?; 
-             DELETE FROM WHERE student_id='${student_id}'`
+             DELETE FROM Scores WHERE student_id='${student_id}'`
     console.log(student_id);
     connection.query(sql,[id],function (err, result, fields) {
         if (err) {
