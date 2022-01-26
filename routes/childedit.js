@@ -22,4 +22,20 @@ router.put('/:id', async (req, res)=>{
         }
     }); 
 });
+router.delete('/:id', async (req, res)=>{
+    var id = req.params.id;
+    var student_id = id;
+    let sql=`DELETE FROM Student  WHERE id=?; 
+             DELETE FROM WHERE student_id='${student_id}'`
+    console.log(student_id);
+    connection.query(sql,[id],function (err, result, fields) {
+        if (err) {
+            console.log(err);
+            res.json(err);
+        } else {
+            console.log(result);
+            res.json(result);
+        }
+    }); 
+});
 module.exports = router;
