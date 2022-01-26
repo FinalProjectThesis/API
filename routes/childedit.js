@@ -4,7 +4,7 @@ var mysql = require('mysql');
 var connection = require('../config.js');
 require('dotenv/config');
 
-router.put('/:id', async (req, res)=>{
+router.put('/update/:id', async (req, res)=>{
     var id = req.params.id;
     var student_id = id;
     var student_name = req.body.student_name;
@@ -22,7 +22,7 @@ router.put('/:id', async (req, res)=>{
         }
     }); 
 });
-router.delete('/:id', async (req, res)=>{
+router.delete('/delete/:id', async (req, res)=>{
     var id = req.params.id;
     var student_id = id;
     let sql=`DELETE FROM Student  WHERE id=?; 
