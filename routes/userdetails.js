@@ -8,7 +8,7 @@ router.post('/', async (req,res)=>{
     console.clear();
     console.log(Check);
     if (Check){
-        res.json(Check);
+        res.json([Check]);
     }else{
         res.json('Failed');
     }
