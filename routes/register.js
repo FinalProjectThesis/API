@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Post = require('../Schemas/GuardianCredentialsSchema');
-
+const bcrypt= require('bcryptjs');
 router.get('/', async (req,res)=> {
     try{
         const posts = await Post.find();
@@ -11,9 +11,11 @@ router.get('/', async (req,res)=> {
     }
 });
 router.post('/', async (req,res)=>{
+    var salt = await bcrypt.genSalt(10);
+    const hashedpassword = await bcrypt.hash(req.body.password, salt);
     const post = new Post({
         username: req.body.username,
-        password: req.body.password,
+        password: hashedpassword,
         first_name:req.body.first_name,
         last_name: req.body.last_name
     })
