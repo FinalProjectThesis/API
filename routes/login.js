@@ -13,7 +13,7 @@ router.post('/', async (req,res)=>{
         const hashedpassword = await bcrypt.hash(req.body.password, salt);
         const isMatch= await bcrypt.compare(req.body.password, Check.password)
         if (isMatch){
-            res.json("Success")
+            res.json("Succeeded")
         }else{
             res.json("Failed")
         }
