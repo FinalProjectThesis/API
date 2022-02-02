@@ -19,7 +19,7 @@ router.post('/',checkauth, async (req,res)=>{
     });
 });
 
-router.delete('/delete/:id', async (req, res)=>{
+router.delete('/delete/:id', checkauth, async (req, res)=>{
     var id = req.params.id;
     var student_id = id
     let sql=`DELETE from Student WHERE id=?;DELETE FROM Scores WHERE student_id='${id}'`
