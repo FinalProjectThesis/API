@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const Post = require('../Schemas/GuardianCredentialsSchema');
 const bcrypt= require('bcryptjs');
+const jwt= require('jsonwebtoken');
+require('dotenv/config');
 
 router.post('/', async (req,res)=>{
     const username1= req.body.username
@@ -13,7 +15,10 @@ router.post('/', async (req,res)=>{
         const hashedpassword = await bcrypt.hash(req.body.password, salt);
         const isMatch= await bcrypt.compare(req.body.password, Check.password)
         if (isMatch){
-            res.json("Succeeded")
+            const accessToken = jwt.sign(username1, process.env.ACCESS_TOKEN_SECRET) 
+            res.json(accessToken)
+            console.log(accessToken);
+            console.log('logged in')
         }else{
             res.json("Failed")
         }
