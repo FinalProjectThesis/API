@@ -2,9 +2,10 @@ const express = require('express');
 const router = express.Router();
 var mysql = require('mysql');
 var connection = require('../config.js');
+const checkauth = require('../Auth.js');
 require('dotenv/config');
 
-router.post('/', async (req,res)=>{
+router.post('/',checkauth, async (req,res)=>{
     var id = req.body.id;
     let sql = `SELECT * FROM Scores WHERE id='${id}'`
     connection.query(sql,function (err, result, fields) {
