@@ -2,9 +2,10 @@ const express = require('express');
 const router = express.Router();
 var mysql = require('mysql');
 var connection = require('../config.js');
+const checkauth = require('../Auth.js');
 require('dotenv/config');
 
-router.put('/update/:id', async (req, res)=>{
+router.put('/update/:id',checkauth, async (req, res)=>{
     var id = req.params.id;
     var student_id = id;
     var student_name = req.body.student_name;
@@ -22,7 +23,7 @@ router.put('/update/:id', async (req, res)=>{
         }
     }); 
 });
-router.delete('/delete/:id', async (req, res)=>{
+router.delete('/delete/:id',checkauth, async (req, res)=>{
     var id = req.params.id;
     var student_id = id;
     let sql=`DELETE FROM Student  WHERE id=?; 

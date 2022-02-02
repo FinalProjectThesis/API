@@ -2,9 +2,10 @@ const express = require('express');
 const router = express.Router();
 var mysql = require('mysql');
 var connection = require('../config.js');
+const checkauth = require('../Auth.js');
 require('dotenv/config');
 
-router.post('/', async (req,res)=>{
+router.post('/',checkauth, async (req,res)=>{
     let parent_username = req.body.parent_username;
     let student_name = req.body.student_name;
     let student_age = req.body.student_age;
