@@ -3,7 +3,7 @@ module.exports = (req, res, next)=>{
     try{
     const token = req.headers.token
     //just to see if it's working
-    console.log(token)
+    console.log("AUTH.JS FILE CHECKAUTH, the token is " + token) //delete after production is done
     const decoded = jwt.verify(req.headers.token, process.env.ACCESS_TOKEN_SECRET)
     req.userData= decoded;
     next();

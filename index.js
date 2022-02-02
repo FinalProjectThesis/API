@@ -6,6 +6,7 @@ const app = express();
 const mongoose = require('mongoose');
 //starting mysql 
 var mysql = require('mysql');
+const jwt = require('jsonwebtoken');
 //Routes
 const registerRoute = require('./routes/register.js');
 const loginRoute = require('./routes/login.js');
