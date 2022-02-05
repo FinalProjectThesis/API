@@ -11,15 +11,14 @@ router.get('/', async (req,res)=> {
     }
 });
 router.post('/', async (req,res)=>{
-    if (typeof req.body.password && req.body.username  === 'string'){
-        const post = new Post({
-            username: req.body.username,
-            password: hashedpassword,
-            first_name:req.body.first_name,
-            last_name: req.body.last_name
-        })
-    var salt = await bcrypt.genSalt(10);
-    const hashedpassword = await bcrypt.hash(req.body.password, salt);
+        var salt = await bcrypt.genSalt(10);
+        const hashedpassword = await bcrypt.hash(req.body.password, salt);
+    const post = new Post({
+        username: req.body.username,
+        password: hashedpassword,
+        first_name:req.body.first_name,
+        last_name: req.body.last_name
+    })
     const username1= req.body.username
     const Check = await Post.findOne({'username': username1})
     console.log(Check);
@@ -35,8 +34,5 @@ router.post('/', async (req,res)=>{
             res.json({message: err})
         });
     }
-}else{
-    res.json('Insufficient Data!')
-}
 });
 module.exports = router;
