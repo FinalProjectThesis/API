@@ -12,6 +12,7 @@ router.get('/', async (req,res)=> {
 });
 router.post('/', async (req,res)=>{
     var salt = await bcrypt.genSalt(10);
+    if (typeof req.body.password && req.body.username && req.body.first_name && req.body.last_name === 'string'){
     const hashedpassword = await bcrypt.hash(req.body.password, salt);
     const post = new Post({
         username: req.body.username,
@@ -24,6 +25,7 @@ router.post('/', async (req,res)=>{
     console.log(Check);
     if (Check){
         res.json('SameUsername'); //Someone Has the Same Username
+        
     }else{
         post.save()
         .then(data => {
@@ -33,6 +35,8 @@ router.post('/', async (req,res)=>{
             res.json({message: err})
         });
     }
+}else{
+    res.json('Insufficient Data!')
+}
 });
-
 module.exports = router;
