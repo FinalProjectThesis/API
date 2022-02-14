@@ -9,6 +9,7 @@ router.post('/', async (req,res)=>{
     const username1= req.body.username
     const Check = await Post.findOne({'username': username1,})
     if (!Check){
+        console.log(req.body)
         res.json('No such User')
     }else{
         var salt = await bcrypt.genSalt(10);
