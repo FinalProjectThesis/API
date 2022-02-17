@@ -31,7 +31,8 @@ router.post('/', async (req,res)=>{
             res.json(data);
         })
         .catch(err => {
-            res.json({message: err})
+            console.log("Error Found")
+            res.json("Failed")
         });
     }
 });
