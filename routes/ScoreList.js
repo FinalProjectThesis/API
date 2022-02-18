@@ -34,6 +34,19 @@ router.post('/:difficulty',checkauth, async (req,res)=>{
         }
     });
 });
+router.post('/getscores',checkauth, async (req,res)=>{
+    var student_id= req.body.student_id;
+    let sql = `SELECT * FROM Scores WHERE student_id='${student_id}'  ORDER BY date DESC,time DESC`
+    connection.query(sql,function (err, result, fields) {
+        if (err) {
+            console.log(err);
+            res.json(err);
+        } else {
+            console.log(result);
+            res.json(result);
+        }
+    });
+});
 
 router.post('/addscore',checkauth, async (req,res)=>{
     var student_id= req.body.student_id;
