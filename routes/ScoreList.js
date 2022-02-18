@@ -34,10 +34,11 @@ router.post('/:difficulty',checkauth, async (req,res)=>{
         }
     });
 });
-router.post('/getscores',checkauth, async (req,res)=>{
-    var student_id= req.body.student_id;
-    let sql = `SELECT * FROM Scores WHERE student_id='${student_id}'  ORDER BY date DESC,time DESC`
-    connection.query(sql,function (err, result, fields) {
+
+router.get('/:student_id',checkauth, async (req,res)=>{
+    var student_id= req.params.student_id;
+    let sql = `SELECT * FROM Scores WHERE student_id=?  ORDER BY date DESC,time DESC`
+    connection.query(sql,[student_id],function (err, result, fields) {
         if (err) {
             console.log(err);
             res.json(err);
@@ -47,7 +48,6 @@ router.post('/getscores',checkauth, async (req,res)=>{
         }
     });
 });
-
 router.post('/addscore',checkauth, async (req,res)=>{
     var student_id= req.body.student_id;
     var student_name= req.body.student_id;
