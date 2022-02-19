@@ -1,6 +1,7 @@
 //importing express
 const express = require('express');
 //executing express
+var cors = require('cors')
 const app = express();
 //const mongodb = require('mongodb');
 const mongoose = require('mongoose');
@@ -16,6 +17,7 @@ const ScoreListRoute = require('./routes/ScoreList');
 const ScoreListDetailsRoute = require('./routes/scorelistdetails');
 const userdetailsRoute = require('./routes/userdetails')
 const childeditRoute = require ('./routes/childedit');
+
 //To Covnert JSON to JS
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -25,6 +27,7 @@ app.get('/', (req,res)=> {
         res.send('Hello World');
 });
 //Importing Routes
+app.use(cors())
 app.use('/register', registerRoute);
 app.use('/login',loginRoute);
 app.use('/childlist', childlistRoute);
