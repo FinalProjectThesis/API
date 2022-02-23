@@ -48,9 +48,9 @@ router.get('/:student_id',checkauth, async (req,res)=>{
         }
     });
 });
-router.post('/addscore',checkauth, async (req,res)=>{
-    var student_id= req.body.student_id;
-    var student_name= req.body.student_id;
+router.post('/addscore/:student_id',checkauth, async (req,res)=>{
+    var student_id= req.params.student_id;
+    var student_name= req.body.student_name;
     var date= req.body.date;
     var time= req.body.time;
     var operation= req.body.operation;
@@ -59,8 +59,8 @@ router.post('/addscore',checkauth, async (req,res)=>{
     var totalscore= req.body.totalscore;
     let sql = `INSERT INTO Scores(student_id, student_name, date, time, operation, difficulty, rawscore, totalscore)
     VALUES
-    ('${student_id}', '${student_name}', '${date}', '${time}', '${operation}', '${difficulty}', '${rawscore}', '${totalscore}')`
-    connection.query(sql,function (err, result, fields) {
+    ('${student_name}', '${date}', '${time}', '${operation}', '${difficulty}', '${rawscore}', '${totalscore}')`
+    connection.query(sql,[student_id],function (err, result, fields) {
         if (err) {
             console.log(err);
             res.json(err);
