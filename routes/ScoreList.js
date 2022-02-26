@@ -59,8 +59,9 @@ router.post('/addscore/:student_id',checkauth, async (req,res)=>{
     var totalscore= req.body.totalscore;
     let sql = `INSERT INTO Scores(student_id, student_name, date, time, operation, difficulty, rawscore, totalscore)
     VALUES
-    ('${student_name}', '${date}', '${time}', '${operation}', '${difficulty}', '${rawscore}', '${totalscore}')`
+    ('${student_id}','${student_name}', '${date}', '${time}', '${operation}', '${difficulty}', '${rawscore}', '${totalscore}')`
     connection.query(sql,[student_id],function (err, result, fields) {
+        console.log(student_name)
         if (err) {
             console.log(err);
             res.json(err);
