@@ -24,7 +24,7 @@ app.use(express.json());
 
 //Testing this out
 app.get('/', (req,res)=> {
-        res.send('Hello World');
+        res.send('Home Page');
 });
 //Importing Routes
 app.use(cors())
